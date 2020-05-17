@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block body_block %}
+
+    <div class="container">
+        <h1>Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input class="btn btn-primary" type="submit" value="LogIn">
+                <a href="{% url 'accounts:password_reset' %}" class="btn btn-success">Forget Passwor?</a>
+            </form>
+    </div>
+{% endblock %}

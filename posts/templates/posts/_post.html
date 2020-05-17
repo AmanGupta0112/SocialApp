@@ -1,0 +1,58 @@
+{% load static %}
+<div class="post-media">
+    <div class="media-body">
+        <h3 class="media-heading">
+          <div class="container">
+            <span class="username">
+                <!-- <img class="img-circle" src="{{user.profile.image.url }}" alt=""><br> -->
+                <a href="{% url 'posts:for_user' username=post.user.username %}">@{{ post.user.username }}</a>
+                <h2 class="post-media-heading">{{ post.message_html|safe }}</h2>
+            </span>
+            </div>
+            <time class="time">
+                <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">{{ post.created_at }}</a>
+            </time>
+        </h3>
+        <div class="media-footer">
+        {% if user.is_authenticated and post.user == user %}
+                <a class="btn btn-primary" href="{% url 'posts:update' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                    <span class="text-danger icon-label">Delete</span>
+                </a>
+        {% endif %}
+        <hr>
+        <h2> Liked : {{ post.like.count }}</h2>
+        <a  class="btn btn-primary btn-comment" href='{% url "posts:comment" pk=post.pk %}'>
+          <span class="glyphicon glyphicon-comment"></span>
+        </a>
+        {% if user in post.like.all %}
+            <a href="{% url 'posts:Dislike' pk=post.pk %}" class="btn btn-lg btn-fill btn-danger">
+                <span class="glyphicon glyphicon-thumbs-down"></span>Dislike
+            </a>
+        {% else %}
+            <a href="{% url 'posts:Like' pk=post.pk %}" class="btn btn-lg btn-fill btn-success">
+                <span class="glyphicon glyphicon-thumbs-up"></span>Like
+            </a>
+        {% endif %}
+        {% for comment in post.comments.all %}
+            <br>
+            {% if user.is_authenticated  %}
+                {{ comment.created_date }}
+                <p><b><u>{{ comment.text|safe|linebreaks }}</u></b></p>
+                <p>Posted By : {{ comment.author }}</p>
+                <p>Comment Date : {{ comment.created_date }}</p>
+                {% if post.user == user %}
+                  <a class="btn btn-primary" href="{% url 'posts:delete_comment' pk=comment.pk %}">
+                      <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                {% endif %}
+              {% else %}
+                <p>No Comments</p>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block body_block %}
+    <div class="container">
+      <h3>
+        <img class="img-circle" src="{{ user.profile.image.url }}">
+        <a href="{% url 'posts:for_user' username=user.username %}"> @{{ user.username }}</a>
+      </h3>
+    </div>
+    <div class="container media-heading">
+        <form class="form-group" method="POST" enctype="multipart/form-data" >
+          {% csrf_token %}
+          <legend class="Profile-Page">Profile Info!</legend>
+          {%  bootstrap_form u_form  %}
+          {%  bootstrap_form p_form  %}
+          <button type="submit" class="btn btn-success">Update</button>
+        </form>
+      </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: url('https://www.scitecheuropa.eu/wp-content/uploads/2019/07/ClaudioVentrella-768x432.jpg');
+  background-size: cover;
+  margin: 0;
+}
+.Profile-Page {
+  color: white;
+}
+
+
+.img-circle {
+    border-radius: 70%;
+}
+
+.mycontent{
+  color: white;
+  /*background-color: aliceblue;*/
+}
+
+.post-media-heading {
+  color: white;
+}
+#note {
+  position: absolute;
+  color: rgba(249,241,204,1);
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  margin: auto;
+  text-align: center;
+  user-select: none;
+  font-family: Arial;
+}

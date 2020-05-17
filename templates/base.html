@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Social</title>
+
+
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+</head>
+<body>
+    <nav class="navbar mynav" role="navigation" id="navbar">
+        <!-- <div class="container"> -->
+        <div class="navbar-header">
+            <a class="navbar-brand mynav" href="{% url 'home' %}">
+              <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a class="navbar-link" href="{% url 'posts:create' %}">Post</a></li>
+                    <li><a class="navbar-link" href="{% url 'groups:all' %}">Group</a></li>
+                    <li><a class="navbar-link" href="{% url 'posts:create' %}"> Post Create</a></li>
+                    <li><a class="navbar-link" href="{% url 'groups:create' %}" >Create Group</a></li>
+                    <li><a class="navbar-link" href="{% url 'accounts:logout' %}">
+                          <span class="glyphicon glyphicon-log-out"></span>
+                    </a></li>
+                    <li><a class=""href="{% url 'accounts:profile'  %}">
+                      <span class="glyphicon glyphicon-user"></span>
+                    </a></li>
+                {% else %}
+                    <li><a class="navbar-link" href="{% url 'groups:all' %}">Groups</a></li>
+                    <li><a class="navbar-link" href="{% url 'accounts:login' %}">
+                          <span class="glyphicon glyphicon-log-in"></span>
+                    </a></li>
+                    <li><a class="navbar-link" href="{% url 'accounts:signup' %}">
+                        Sign Up!
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- </div> -->
+    </nav>
+    <div class="container mycontent">
+      <!-- <div class="jumbotron"> -->
+
+            {% block body_block %}
+
+            {% endblock %}
+
+        <!-- </div> -->
+    </div>
+<canvas id="canvas"></canvas>
+<span id="note">
+  <a href="https://www.instagram.com/aman_gupta1201/"><img src="http://fresnostate.edu/webresources/images/64x64/64x64-instagram.png"></a>
+  <a href="https://www.facebook.com/people/Aman-Gupta/100009706834484"><img src="http://fresnostate.edu/webresources/images/64x64/64x64-facebook.png"></a>
+  <a href="https://www.linkedin.com/in/aman-gupta-58059614b/"><img src="http://fresnostate.edu/webresources/images/64x64/64x64-linkedin.png"></a>
+  <a href="https://twitter.com/AmanGup28421727"><img src="http://fresnostate.edu/webresources/images/64x64/64x64-twitter.png"></a>
+</span>
+<link rel="stylesheet" href="{% static 'social/css/master.css' %}">
+<script type="text/javascript" src="{% static 'social/js/master.js' %}"></script>
+</body>
+
+
+</html>
