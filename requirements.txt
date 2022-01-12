@@ -34,7 +34,7 @@ lxml==4.5.0
 mccabe==0.6.1
 pilkit==2.0
 Pillow==7.1.1
-pipenv==2018.11.26
+pipenv==2022.1.8
 post==2019.4.13
 psycopg2==2.8.5
 public==2019.4.13
